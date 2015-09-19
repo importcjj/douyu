@@ -10,5 +10,6 @@ setup(
     author_mail="jiaju.chen@ele.me",
     requirements=[
         "scrapy",
+        "sqlalchemy"
     ],
 )

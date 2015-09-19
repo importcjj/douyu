@@ -11,7 +11,7 @@ class DouyuCrawlSpiderSpider(CrawlSpider):
     allowed_domains = ['douyutv.com']
     start_urls = [
         'http://www.douyutv.com/directory/all?page={}'.format(i)
-        for i in range(1, 2)
+        for i in range(1, 30)
     ]
 
     rules = (
@@ -35,6 +35,4 @@ class DouyuCrawlSpiderSpider(CrawlSpider):
             else:
                 item['zbViewer'] = int(item['zbViewer'])
 
-            print response.url
-            print index
             yield item

@@ -10,8 +10,7 @@ class DouyuCrawlSpiderSpider(CrawlSpider):
     name = 'douyu_crawl_spider'
     allowed_domains = ['douyutv.com']
     start_urls = [
-        'http://www.douyutv.com/directory/all?page={}'.format(i)
-        for i in range(1, 30)
+        'http://www.douyutv.com/directory/all?page=1'
     ]
 
     rules = (

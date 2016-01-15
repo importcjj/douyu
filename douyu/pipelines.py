@@ -1,4 +1,4 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
 
 # Define your item pipelines here
 #
@@ -31,22 +31,20 @@ class DouyuPipeline(object):
             self.write2db(c)
             return item
         else:
-            print "=============="
-            print self.crawl_index
             raise DropItem("Message")
 
     def write2db(self, obj):
-        self.session.add(obj)
-        self.session.flush()
+        DBSession().add(obj)
+        DBSession().flush()
         return obj
 
     def open_spider(self, spider):
-        self.session = DBSession()
         index = self.write2db(Index())
         self.crawl_index = int(index.id)
 
     def close_spider(self, spider):
-        self.session.commit()
+        DBSession().commit()
+        DBSession().remove()
 
     # @classmethod
     # def from_crawler(cls, crawler):

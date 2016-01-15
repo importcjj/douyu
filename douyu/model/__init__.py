@@ -6,7 +6,10 @@ from sqlalchemy import (
     DateTime,
     func
 )
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import (
+    sessionmaker,
+    scope_session
+)
 from sqlalchemy.ext.declarative import declarative_base
 
 try:
@@ -36,9 +39,16 @@ engine = create_engine(
         **MYSQL),
     encoding="utf-8"
 )
+
+
+def make_session(engine):
+    return scope_session(
+        sessionmaker(bind=engine)
+    )
+
 # 创建DBSession
-DBSession = sessionmaker(bind=engine)
+DBSession = make_session(engine)
 
 
-from .index import Index
-from .card import RoomCard
+from .index import Index  # noqa
+from .card import RoomCard  # noqa
